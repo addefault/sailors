@@ -85,7 +85,27 @@ window.addEventListener('load', function() {
             slidesToShow: 4,
             prevArrow: '<button type="button" class="slider-arrow prev"></button>',
             nextArrow: '<button type="button" class="slider-arrow next"></button>',
-            infinite: false
+            infinite: false,
+            responsive: [
+                {
+                  breakpoint: 1201,
+                  settings: {
+                    slidesToShow: 3
+                  }
+                },
+                {
+                    breakpoint: 661,
+                    settings: {
+                      slidesToShow: 2
+                    } 
+                },
+                {
+                    breakpoint: 501,
+                    settings: {
+                      slidesToShow: 1
+                    } 
+                }
+            ]
         });
     }
 
@@ -97,4 +117,24 @@ window.addEventListener('load', function() {
             infinite: false
         });
     }
+
+    let menuOpenTrigger = document.querySelector('.menu-trigger'),
+        mobileMenu = document.querySelector('.mobile-menu'),
+        menuCloseTrigger = mobileMenu.querySelector('.menu-close');
+    menuOpenTrigger.addEventListener('click', function() {
+        mobileMenu.style.opacity = 0;
+        mobileMenu.style.display = 'flex';
+        mobileMenu.style.transition = `opacity ${fadeDuration}ms`;
+        setTimeout(() => {
+            mobileMenu.style.opacity = 1;
+        }, 10);
+    });
+    menuCloseTrigger.addEventListener('click', function() {
+        mobileMenu.style.opacity = 1;
+        mobileMenu.style.transition = `opacity ${fadeDuration}ms`;
+        mobileMenu.style.opacity = 0;
+        setTimeout(() => {
+            mobileMenu.style.display = 'none';
+        }, fadeDuration);
+    });
 });
